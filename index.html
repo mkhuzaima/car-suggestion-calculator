@@ -13,10 +13,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
-        a.mk-plus-button,
-        a.mk-suggest-btn,
-        a.mk-del,
-        a.mk-del:hover {
+        /* a[href="#!"].btn.btn-light, */
+        .mk-plus-button, .mk-plus-button:hover,
+        .mk-suggest-btn, .mk-suggest-btn:hover,
+        .mk-del,.mk-del:hover {
             background-color: #ffd900;
             color: #000;
         }
@@ -99,8 +99,8 @@
                     <div class="col-10 col-sm-11 px-2 px-sm-2 px-md-4  m-0">
                     </div>
                     <div class="col-2 col-sm-1 px-1 px-md-2 pr-5 m-0">
-                        <a href="#!" class="btn btn-light " id="fa-plus-parent" onclick="addRow()"><i
-                                class="mk-plus-button fa-solid fa-plus"></i></a>
+                        <a href="#!" class="btn btn-light mk-plus-button" id="fa-plus-parent" onclick="addRow()"><i
+                                class=" fa-solid fa-plus"></i></a>
                     </div>
                 </div>
 
@@ -223,7 +223,7 @@
 
         function getLuggage(Amount, lug_type) {
             let lug_array = [];
-            
+
             for (let i = 0; i < Amount.length; i++) {
                 if (lug_type[i] != "None") {
                     index = Array_Luggage.findIndex(x => x.id == lug_type[i]);
