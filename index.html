@@ -13,12 +13,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
-        /* a[href="#!"].btn.btn-light, */
-        .mk-plus-button, .mk-plus-button:hover,
-        .mk-suggest-btn, .mk-suggest-btn:hover,
-        .mk-del,.mk-del:hover {
+        a.mk-plus-button,
+        a.mk-plus-button:hover,
+        a.mk-suggest-btn,
+        a.mk-suggest-btn:hover,
+        a.mk-del,
+        a.mk-del:hover {
             background-color: #ffd900;
+            border-color: #ffd900;
             color: #000;
+        }
+
+        a.mk-del-disabled,
+        a.mk-del-disabled:hover {
+            background-color: #9da1a4f9;
+            border-color: #9da1a4f9;
+        }
+
+        .mk-heading {
+            color: #ffd900 !important;
         }
 
         div.card>div.card-body.mk-card-body {
@@ -32,10 +45,10 @@
     <div class="container-md my-5 d-flex justify-content-center" style="size: 40%;">
         <div class="card text-center" style="width: 40rem;">
             <div class="card-header" style="background-color: #FDD700; size: 30%;">
-                <h3 class="text-dark">VEHICLE & LUGGAGE CALCULATOR</h3>
+                <h3 class="text-dark ">VEHICLE & LUGGAGE CALCULATOR</h3>
             </div>
             <div class="mk-card-body card-body">
-                <h6 class="card-title ">
+                <h6 class="card-title mk-heading">
                     Enter your passenger & luggage details below
                 </h6>
                 <p class="card-text  font-weight-bold">
@@ -55,7 +68,7 @@
             <div class="mk-card-body card-body calculator_form_parent">
                 <div class="calculator_form pb-0 mb-2">
 
-                    <h6 class="text-start ">Passengers</h6>
+                    <h6 class="text-start mk-heading">Passengers</h6>
                     <select id="NoOfPassenger" class="form-select form-select-xs mb-3"
                         aria-label=".form-select-lg example">
                         <option value="" disabled selected hidden>
@@ -64,10 +77,10 @@
                     </select>
                     <div class="row">
                         <div class="col-6 col-sm-8">
-                            <h6 class="text-start ">Luggage Type</h6>
+                            <h6 class="text-start mk-heading">Luggage Type</h6>
                         </div>
                         <div class="col-6 col-sm-4">
-                            <h6 class="text-start ">Amount</h6>
+                            <h6 class="text-start mk-heading">Amount</h6>
                         </div>
                     </div>
                     <div id="rows" class="p-0 m-0">
@@ -86,7 +99,8 @@
                                 </select>
                             </div>
                             <div class="col-2 col-sm-1 px-1 px-md-2 pr-5 m-0 ">
-                                <button class="btn btn-light mk-del" disabled><i class="fa-solid fa-trash"></i></button>
+                                <!-- <button class="btn btn-light mk-del mk-del-disabled" disabled ><i class="fa-solid fa-trash"></i></button> -->
+                                <a class="btn btn-light mk-del mk-del-disabled" disabled ><i class="fa-solid fa-trash"></i></a>
                             </div>
                         </div>
                     </div>
@@ -118,7 +132,7 @@
                     </div>
                     <div class="col-7">
                         <div class="card-body">
-                            <h5 class="card-title text-warning" id="suggestedCar"></h5>
+                            <h5 class="card-title text-warning mk-heading" id="suggestedCar"></h5>
                             <p class="card-text text-light" id="suggestedCarText"></p>
                         </div>
                     </div> <!-- col 7 end-->
@@ -239,7 +253,8 @@
             let count = rows.childElementCount;
             const row = document.getElementById("row1").cloneNode(true);
             row.id = `row${count + 1}`;
-            row.children[2].children[0].disabled = false;
+            row.children[2].children[0].classList.remove("mk-del-disabled");
+            // row.children[2].children[0].disabled = false;
             // row.children[2].children[0].hidden = false;
             row.querySelector(".mk-del").addEventListener(
                 "click",
