@@ -15,17 +15,22 @@
     <style>
         a.mk-plus-button,
         a.mk-plus-button:hover,
+        a.mk-plus-button:visited,
         a.mk-suggest-btn,
         a.mk-suggest-btn:hover,
+        a.mk-suggest-btn:visited,
         a.mk-del,
-        a.mk-del:hover {
+        a.mk-del:hover,
+        a.mk-del:visited {
             background-color: #ffd900;
             border-color: #ffd900;
             color: #000;
         }
 
         a.mk-del-disabled,
-        a.mk-del-disabled:hover {
+        a.mk-del-disabled:hover,
+        a.mk-del-disabled:visited 
+        {
             background-color: #9da1a4f9;
             border-color: #9da1a4f9;
         }
@@ -190,7 +195,11 @@
 
         function hideVehicleCard() {
             $("#vehicleCard").slideUp("slow");
+        }
 
+        function showWarning0() {
+            $("#warning").slideDown("slow");
+            hideVehicleCard();
             // scroll to information
             $('html, body').animate({
                 scrollTop: $("#warning").parent().parent().offset().top
@@ -199,6 +208,10 @@
 
         function showVehicleCard() {
             $("#vehicleCard").slideDown("slow");
+            // scroll to vehicle card
+            $('html, body').animate({
+            scrollTop: $("#vehicleCard").offset().top
+            }, 200);
         }
 
         function hideWarning() {
@@ -209,30 +222,26 @@
         function showWarning() {
             hideWarning();
             warning.innerHTML = "Your journey must have at least one passenger";
-            $("#warning").slideDown("slow");
-            hideVehicleCard();
+            showWarning0();
 
         }
 
         function showWarning1(row) {
             hideWarning();
             warning.innerHTML = `There is an Amount of Luggage in ${row} but no Luggage Type Selected`;
-            $("#warning").slideDown("slow");
-            hideVehicleCard();
+            showWarning0();
         }
 
         function showWarning2(luggageWarning, row) {
             hideWarning();
             warning.innerHTML = `The luggage Amount for ${luggageWarning} needs to be one or more in ${row}`;
-            $("#warning").slideDown("slow");
-            hideVehicleCard();
+            showWarning0();
         }
 
         function showWarning3(row) {
             hideWarning();
             warning.innerHTML = `The ${row} has No Luggage Type and Amount Selected Delete this ${row} to proceed`;
-            $("#warning").slideDown("slow");
-            hideVehicleCard();
+            showWarning0();
         }
 
         function getLuggage(Amount, lug_type) {
